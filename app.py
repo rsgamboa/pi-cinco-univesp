@@ -1,6 +1,8 @@
 import streamlit as st
 from pathlib import Path
 import base64
+import pandas as pd
+import numpy as np
 
 # Initial page config
 
@@ -27,6 +29,13 @@ def img_to_bytes(img_path):
 
 def cs_sidebar():
 
+    st.sidebar.markdown('''[<img src='data:image/png;base64,{}' class='img-fluid' width=162 height=auto>](https://streamlit.io/)'''.format(img_to_bytes("logo-univesp-white.png")), unsafe_allow_html=True)
+    st.sidebar.header('Projeto Integrador IV')
+    
+    st.sidebar.markdown('''
+<small>Dashboard desenvolvida para analise de comparação do 5G entre Brasil e Korea doo Sul</small>
+''', unsafe_allow_html=True)
+
     return None
 
 
@@ -34,8 +43,22 @@ def cs_sidebar():
 
 def cs_body():
 
-    return None
+    col1, col2 = st.columns(2)
+
+    # Dashboard Left
+
+   
+
     
+
+    # Dashboard Right
+
+ 
+
+
+
+    return None
+
 
 
     # Run main()
