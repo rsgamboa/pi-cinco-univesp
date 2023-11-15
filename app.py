@@ -4,13 +4,17 @@ import base64
 import pandas as pd
 import numpy as np
 
+
 # Initial page config
 
 st.set_page_config(
-     page_title='Streamlit cheat sheet',
-     layout="wide",
-     initial_sidebar_state="expanded",
+    page_title='Streamlit cheat sheet',
+    layout="wide",
+    initial_sidebar_state="expanded",
 )
+CELULARES_URL = pd.read_csv('modelos_celulares_5g.csv')
+ANTENAS_URL = pd.read_csv('lista-de-antenas.csv')
+
 
 def main():
     cs_sidebar()
@@ -46,22 +50,24 @@ def cs_body():
     col1, col2 = st.columns(2)
 
     # Dashboard Left
+    col1.subheader('Modelos de Celulares com 5G')
+    # Carrega os dados do arquivo CSV
+    df = pd.read_csv('modelos_celulares_5g.csv')
+    # Exibe a tabela
+    col1.table(df)
 
-   
 
-    
 
     # Dashboard Right
-
- 
-
+    col2.subheader('Antenas 5G Instaladas')
+    # Carrega os dados do arquivo CSV
+    df = pd.read_csv('lista-de-antenas.csv')
+    # Exibe a tabela
+    col2.table(df)
 
 
     return None
 
-
-
-    # Run main()
 
 if __name__ == '__main__':
     main()
