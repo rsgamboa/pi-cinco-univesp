@@ -1,19 +1,18 @@
 import streamlit as st
 from pathlib import Path
 import base64
-import pandas as pd
 import numpy as np
-
+import pandas as pd
+import matplotlib.pyplot as plt
 
 # Initial page config
-
 st.set_page_config(
-    page_title='Streamlit cheat sheet',
+    page_title='Dashboard 5G',
     layout="wide",
     initial_sidebar_state="expanded",
 )
-CELULARES_URL = pd.read_csv('modelos_celulares_5g.csv')
-ANTENAS_URL = pd.read_csv('lista-de-antenas.csv')
+#CELULARES_URL = pd.read_csv('modelos_celulares_5g.csv')
+#ANTENAS_URL = pd.read_csv('lista-de-antenas.csv')
 
 
 def main():
@@ -47,23 +46,30 @@ def cs_sidebar():
 
 def cs_body():
 
-    col1, col2 = st.columns(2)
+    #col1, col2 = st.columns(2)
 
     # Dashboard Left
-    col1.subheader('Modelos de Celulares com 5G')
+    #col1.subheader('Modelos de Celulares com 5G')
     # Carrega os dados do arquivo CSV
-    df = pd.read_csv('modelos_celulares_5g.csv')
+    #df = pd.read_csv('data/modelos_celulares_5g.csv')
     # Exibe a tabela
-    col1.table(df)
-
-
+    #st.table(df)
 
     # Dashboard Right
-    col2.subheader('Antenas 5G Instaladas')
+    #col2.subheader('Antenas 5G Instaladas')
     # Carrega os dados do arquivo CSV
-    df = pd.read_csv('lista-de-antenas.csv')
+    #df = pd.read_csv('lista-de-antenas.csv')
     # Exibe a tabela
-    col2.table(df)
+    #col2.table(df)
+
+    mobile = pd.read_csv('data/modelos_celulares_5g.csv')
+    mobile = mobile.groupby(['Fabricante']).size() 
+    st.header('Qtd de celulares com 5G por fabricantes - 2022-2023')
+
+    st.bar_chart(mobile)
+
+
+
 
 
     return None
