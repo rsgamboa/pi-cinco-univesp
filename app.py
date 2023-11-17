@@ -11,17 +11,12 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded",
 )
-#CELULARES_URL = pd.read_csv('modelos_celulares_5g.csv')
-#ANTENAS_URL = pd.read_csv('lista-de-antenas.csv')
-
 
 def main():
     cs_sidebar()
     cs_body()
 
     return None
-
-# Thanks to streamlitopedia for the following code snippet
 
 def img_to_bytes(img_path):
     img_bytes = Path(img_path).read_bytes()
@@ -46,74 +41,58 @@ def cs_sidebar():
 
 def cs_body():
 
+    # qtd de celulares com 5G por fabricantes - 2022-2023
+
+    qtdmf = pd.read_csv('data/modelos_celulares_5g.csv')
+    qtdmf = qtdmf.groupby(['Fabricante']).size() 
+    st.subheader('Celulares fabricados com 5G | 2022-2023')
+    st.bar_chart(qtdmf)
+
+      
     col1, col2 = st.columns(2)
 
     # Coluna Brasil
     with col1:
-        st.header('Brasil')
-   
-        mobile = pd.read_csv('data/modelos_celulares_5g.csv')
-        mobile = mobile.groupby(['Fabricante']).size() 
-        st.subheader('Qtd de celulares com 5G por fabricantes - 2022-2023')
+        st.markdown('Brasil')
 
-        st.bar_chart(mobile)
-
-        antenas = pd.read_csv('data/lista-de-antenas.csv')
-        antenas = antenas.groupby(['Operadora']).size() 
-        st.subheader('Antenas Instaladas Por Operadora - 2022-2023')
-
+        antenas = pd.read_csv('data/test.csv')
+        antenas = antenas.groupby(['UF']).size() 
+        st.subheader('Antenas Instaladas')
         st.bar_chart(antenas)
+        
 
 
-    with col2:
-        st.header('South Korea')
-   
-        mobile = pd.read_csv('data/modelos_celulares_5g.csv')
-        mobile = mobile.groupby(['Fabricante']).size() 
-        st.subheader('Qtd de celulares com 5G por fabricantes - 2022-2023')
+   # with col2:
+        #st.markdown('South Korea')
 
-        st.bar_chart(mobile)
+        # Antesnas Korea
+        #antenas = pd.read_csv('')
+        #antenas = antenas.groupby(['UF']).size() 
+        #st.subheader('Antenas Instaladas')
+        #st.bar_chart(antenas)
 
-        antenas = pd.read_csv('data/lista-de-antenas.csv')
-        antenas = antenas.groupby(['Operadora']).size() 
-        st.subheader('Antenas Instaladas Por Operadora - 2022-2023')
+    # Tabs
+    #tab_titles = ('Brasil', 'South Korea')
+    #tab1, tab2 = st.tabs(tab_titles)
 
-        st.bar_chart(antenas)
+    #with tab1:
+        #st.header('Brasil')
+        #mobile = pd.read_csv('data/modelos_celulares_5g.csv')
+        #mobile = mobile.groupby(['Fabricante']).size() 
+        #st.subheader('Qtd de celulares com 5G por fabricantes - 2022-2023')
+        #st.bar_chart(mobile)
 
-
-    tab_titles = ('Brasil', 'South Korea')
-    tab1, tab2 = st.tabs(tab_titles)
-
-    with tab1:
-        st.header('Brasil')
-   
-        mobile = pd.read_csv('data/modelos_celulares_5g.csv')
-        mobile = mobile.groupby(['Fabricante']).size() 
-        st.subheader('Qtd de celulares com 5G por fabricantes - 2022-2023')
-
-        st.bar_chart(mobile)
-
-        antenas = pd.read_csv('data/lista-de-antenas.csv')
-        antenas = antenas.groupby(['Operadora']).size() 
-        st.subheader('Antenas Instaladas Por Operadora - 2022-2023')
-
-        st.bar_chart(antenas)
+      
 
 
-    with tab2:
-        st.header('South Korea')
-   
-        mobile = pd.read_csv('data/modelos_celulares_5g.csv')
-        mobile = mobile.groupby(['Fabricante']).size() 
-        st.subheader('Qtd de celulares com 5G por fabricantes - 2022-2023')
+    #with tab2:
+        #st.header('South Korea')
+        #mobile = pd.read_csv('data/modelos_celulares_5g.csv')
+        #mobile = mobile.groupby(['Fabricante']).size() 
+        #st.subheader('Qtd de celulares com 5G por fabricantes - 2022-2023')
+        #st.bar_chart(mobile)
 
-        st.bar_chart(mobile)
-
-        antenas = pd.read_csv('data/lista-de-antenas.csv')
-        antenas = antenas.groupby(['Operadora']).size() 
-        st.subheader('Antenas Instaladas Por Operadora - 2022-2023')
-
-        st.bar_chart(antenas)
+     
 
     return None
 
